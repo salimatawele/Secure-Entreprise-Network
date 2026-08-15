@@ -1,1 +1,222 @@
+============================================================
+SECURE ENTERPRISE NETWORK
+DAY 1 - CONNECTIVITY TESTS
+============================================================
+
+Date: 15 August 2026
+Phase: Day 1 - Network Foundation
+
+============================================================
+1. VLAN VERIFICATION
+============================================================
+
+Command:
+show vlan brief
+
+Result:
+SW3-ACCESS#  sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/7, Fa0/8, Fa0/9, Fa0/10
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+10   ADMIN                            active    Fa0/3, Fa0/4
+20   RH                               active    Fa0/5, Fa0/6
+30   IT                               active    
+40   SERVERS                          active    
+50   GUEST                            active    
+99   MANAGEMENT                       active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+
+
+
+SW4-ACCESS#sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/8, Fa0/9, Fa0/10, Fa0/11
+                                                Fa0/12, Fa0/13, Fa0/14, Fa0/15
+                                                Fa0/16, Fa0/17, Fa0/18, Fa0/19
+                                                Fa0/20, Fa0/21, Fa0/22, Fa0/23
+                                                Fa0/24, Gig0/1, Gig0/2
+10   ADMIN                            active    
+20   RH                               active    
+30   IT                               active    Fa0/3, Fa0/4
+40   SERVERS                          active    Fa0/7
+50   GUEST                            active    Fa0/5, Fa0/6
+99   MANAGEMENT                       active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active   
+
+
+============================================================
+2. TRUNK VERIFICATION
+============================================================
+
+Command:
+show interfaces trunk
+
+Result:
+
+SW3-ACCESS#sh int trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      1
+Fa0/2       on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Fa0/1       1-1005
+Fa0/2       1-1005
+
+Port        Vlans allowed and active in management domain
+Fa0/1       1,10,20,30,40,50,99
+Fa0/2       1,10,20,30,40,50,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       1,10,20,30,40,50,99
+Fa0/2       none
+
+
+
+SW4-ACCESS#sh int trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      1
+Fa0/2       on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Fa0/1       1-1005
+Fa0/2       1-1005
+
+Port        Vlans allowed and active in management domain
+Fa0/1       1,10,20,30,40,50,99
+Fa0/2       1,10,20,30,40,50,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       1,10,20,30,40,50,99
+Fa0/2       none
+
+
+============================================================
+3. SVI VERIFICATION
+============================================================
+
+Command:
+show ip interface brief
+
+Result:
+
+SW1-CORE#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+FastEthernet0/1        unassigned      YES unset  up                    up 
+FastEthernet0/2        unassigned      YES unset  up                    up 
+FastEthernet0/3        unassigned      YES unset  down                  down 
+FastEthernet0/4        unassigned      YES unset  down                  down 
+FastEthernet0/5        unassigned      YES unset  down                  down 
+FastEthernet0/6        unassigned      YES unset  down                  down 
+FastEthernet0/7        unassigned      YES unset  down                  down 
+FastEthernet0/8        unassigned      YES unset  down                  down 
+FastEthernet0/9        unassigned      YES unset  down                  down 
+FastEthernet0/10       unassigned      YES unset  down                  down 
+FastEthernet0/11       unassigned      YES unset  down                  down 
+FastEthernet0/12       unassigned      YES unset  down                  down 
+FastEthernet0/13       unassigned      YES unset  down                  down 
+FastEthernet0/14       unassigned      YES unset  down                  down 
+FastEthernet0/15       unassigned      YES unset  down                  down 
+FastEthernet0/16       unassigned      YES unset  down                  down 
+FastEthernet0/17       unassigned      YES unset  down                  down 
+FastEthernet0/18       unassigned      YES unset  down                  down 
+FastEthernet0/19       unassigned      YES unset  down                  down 
+FastEthernet0/20       unassigned      YES unset  down                  down 
+FastEthernet0/21       unassigned      YES unset  down                  down 
+FastEthernet0/22       unassigned      YES unset  down                  down 
+FastEthernet0/23       unassigned      YES unset  up                    up 
+FastEthernet0/24       unassigned      YES unset  down                  down 
+GigabitEthernet0/1     10.0.0.6        YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  up                    up 
+Vlan1                  unassigned      YES unset  administratively down down 
+Vlan10                 192.168.10.2    YES manual up                    up 
+Vlan20                 192.168.20.2    YES manual up                    up 
+Vlan30                 192.168.30.2    YES manual up                    up 
+Vlan40                 192.168.40.2    YES manual up                    up 
+Vlan50                 192.168.50.2    YES manual up                    up 
+Vlan99                 192.168.99.2    YES manual up                    up
+
+SW2-CORE#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+FastEthernet0/1        unassigned      YES unset  up                    up 
+FastEthernet0/2        unassigned      YES unset  up                    up 
+FastEthernet0/3        unassigned      YES unset  down                  down 
+FastEthernet0/4        unassigned      YES unset  down                  down 
+FastEthernet0/5        unassigned      YES unset  down                  down 
+FastEthernet0/6        unassigned      YES unset  down                  down 
+FastEthernet0/7        unassigned      YES unset  down                  down 
+FastEthernet0/8        unassigned      YES unset  down                  down 
+FastEthernet0/9        unassigned      YES unset  down                  down 
+FastEthernet0/10       unassigned      YES unset  down                  down 
+FastEthernet0/11       unassigned      YES unset  down                  down 
+FastEthernet0/12       unassigned      YES unset  down                  down 
+FastEthernet0/13       unassigned      YES unset  down                  down 
+FastEthernet0/14       unassigned      YES unset  down                  down 
+FastEthernet0/15       unassigned      YES unset  down                  down 
+FastEthernet0/16       unassigned      YES unset  down                  down 
+FastEthernet0/17       unassigned      YES unset  down                  down 
+FastEthernet0/18       unassigned      YES unset  down                  down 
+FastEthernet0/19       unassigned      YES unset  down                  down 
+FastEthernet0/20       unassigned      YES unset  down                  down 
+FastEthernet0/21       unassigned      YES unset  down                  down 
+FastEthernet0/22       unassigned      YES unset  down                  down 
+FastEthernet0/23       unassigned      YES unset  up                    up 
+FastEthernet0/24       unassigned      YES unset  down                  down 
+GigabitEthernet0/1     10.0.0.10       YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  up                    up 
+Vlan1                  unassigned      YES unset  administratively down down 
+Vlan10                 192.168.10.3    YES manual up                    up 
+Vlan20                 192.168.20.3    YES manual up                    up 
+Vlan30                 192.168.30.3    YES manual up                    up 
+Vlan40                 192.168.40.3    YES manual up                    up 
+Vlan50                 192.168.50.3    YES manual up                    up 
+Vlan99                 192.168.99.3    YES manual up                    up
+
+============================================================
+4. HSRP VERIFICATION
+============================================================
+
+Command:
+show standby brief
+
+Result:
+
+SW1-CORE#sh standby br
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State    Active          Standby         Virtual IP
+Vl10        10   100   Standby  192.168.10.3    local           192.168.10.1
+
+SW2-CORE#sh standby br
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State    Active          Standby         Virtual IP
+Vl10        10   100   Active   local           192.168.10.2    192.168.10.1 
+
+============================================================
+5. CONNECTIVITY TESTS
+============================================================
+
+Test 1:
+PC-ADMIN1 → 192.168.10.1
+
+Result:
+SW1-CORE#ping 192.168.10.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 0/0/0 ms
 
