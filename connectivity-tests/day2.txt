@@ -1,0 +1,382 @@
+==================================================
+JOUR 2 - TESTS ET VERIFICATIONS
+==================================================
+
+DATE : 16/08/2026
+
+
+==================================================
+1. ETHERCHANNEL
+==================================================
+
+Commande :
+
+show etherchannel summary
+
+Résultat :
+
+SW1-CORE#sh ether sum
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+1      Po1(SU)           LACP   Fa0/23(P) Gig0/2(P) 
+2      Po2(SU)           PAgP   Fa0/1(P) Fa0/2(P) 
+
+  
+SW2-CORE#sh ether sum
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+1      Po1(SU)           LACP   Fa0/23(P) Gig0/2(P) 
+3      Po3(SU)           PAgP   Fa0/1(P) Fa0/2(P)   
+
+
+SW3-ACCESS#sh ether sum
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+2      Po2(SU)           PAgP   Fa0/1(P) Fa0/2(P) 
+4      Po4(SU)           LACP   Fa0/8(P) Fa0/9(P) 
+
+ SW4-ACCESS#sh ether sum
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 2
+Number of aggregators:           2
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+3      Po3(SU)           PAgP   Fa0/1(P) Fa0/2(P) 
+4      Po4(SU)           LACP   Fa0/8(P) Fa0/9(P) 
+SW4-ACCESS# 
+==================================================
+2. STP
+==================================================
+
+Commande :
+
+show spanning-tree
+
+Résultat :
+
+SW1-CORE#sh spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    32769
+             Address     0001.4278.04EE
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Desg FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+VLAN0010
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24586
+             Address     0001.4278.04EE
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24586  (priority 24576 sys-id-ext 10)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Desg FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+VLAN0020
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24596
+             Address     00E0.8F10.8B8B
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28692  (priority 28672 sys-id-ext 20)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Root FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+VLAN0030
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24606
+             Address     0001.4278.04EE
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24606  (priority 24576 sys-id-ext 30)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Desg FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+VLAN0040
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24616
+             Address     00E0.8F10.8B8B
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28712  (priority 28672 sys-id-ext 40)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Root FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+VLAN0050
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24626
+             Address     00E0.8F10.8B8B
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28722  (priority 28672 sys-id-ext 50)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Root FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+VLAN0099
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24675
+             Address     0001.4278.04EE
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24675  (priority 24576 sys-id-ext 99)
+             Address     0001.4278.04EE
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po1              Desg FWD 4         128.33   P2p
+Po2              Desg FWD 12        128.34   P2p
+
+SW2-CORE#show spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    32769
+             Address     0001.4278.04EE
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Root FWD 4         128.33   P2p
+
+VLAN0010
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24586
+             Address     0001.4278.04EE
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28682  (priority 28672 sys-id-ext 10)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Root FWD 4         128.33   P2p
+
+VLAN0020
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24596
+             Address     00E0.8F10.8B8B
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24596  (priority 24576 sys-id-ext 20)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Desg FWD 4         128.33   P2p
+
+VLAN0030
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24606
+             Address     0001.4278.04EE
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28702  (priority 28672 sys-id-ext 30)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Root FWD 4         128.33   P2p
+
+VLAN0040
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24616
+             Address     00E0.8F10.8B8B
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24616  (priority 24576 sys-id-ext 40)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Desg FWD 4         128.33   P2p
+
+VLAN0050
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24626
+             Address     00E0.8F10.8B8B
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24626  (priority 24576 sys-id-ext 50)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Desg FWD 4         128.33   P2p
+
+VLAN0099
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24675
+             Address     0001.4278.04EE
+             Cost        4
+             Port        33(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28771  (priority 28672 sys-id-ext 99)
+             Address     00E0.8F10.8B8B
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po3              Desg FWD 12        128.34   P2p
+Po1              Root FWD 4         128.33   P2p
+==================================================
+3. INTERFACES
+==================================================
+
+Commande :
+
+Résultat :
+
+R1-EDGE#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     unassigned      YES unset  administratively down down 
+GigabitEthernet0/1     unassigned      YES unset  up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.0.0.2        YES manual up                    up 
+Serial0/0/1            10.0.0.17       YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+
+R2-EDGE#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     unassigned      YES unset  administratively down down 
+GigabitEthernet0/1     unassigned      YES unset  up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.0.0.2        YES manual up                    up 
+Serial0/0/1            10.0.0.17       YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+
+des différents tests.
