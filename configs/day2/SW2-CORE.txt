@@ -1,7 +1,7 @@
 ! ============================================================
-! Device: R1-EDGE
+! Device: SW2-CORE
 ! Project: Secure Enterprise Network
-! Phase: Day 1 - Network Foundation
+! Phase: Day 2 - Network Foundation
 ! ============================================================
 
 ! Paste the output of:
