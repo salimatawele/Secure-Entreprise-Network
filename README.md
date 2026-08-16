@@ -567,69 +567,100 @@ All tests will be performed within the simulated laboratory environment.
 * [x] Initial IP addressing
 * [x] Initial connectivity tests
 
-## Day 2 — Layer 2 Redundancy
+---
+
+## Day 2 — Layer 2 Redundancy & Edge Architecture
 
 * [x] EtherChannel
 * [x] STP
 * [x] Root bridge configuration
 * [x] PortFast
 * [x] BPDU Guard
-* [x] Layer 2 verification
-
-## Day 3 — Dynamic Routing
-
-* [ ] OSPF
-* [ ] Router IDs
-* [ ] OSPF neighbors
-* [ ] Routing table verification
-* [ ] Route failover testing
-
-## Day 4 — Network Services
-
-* [ ] DHCP
-* [ ] DHCP relay
-* [ ] DNS / server configuration
-* [ ] NAT/PAT
-* [ ] Internet connectivity
-
-## Day 5 — Device Security
-
-* [ ] SSH
-* [ ] Local authentication
-* [ ] Password protection
-* [ ] Secure management
-* [ ] Unused-port shutdown
-
-## Day 6 — Layer 2 Security
-
-* [ ] Port Security
-* [ ] DHCP Snooping
-* [ ] BPDU Guard
-* [ ] PortFast
-* [ ] Security verification
-
-## Day 7 — Traffic Security
-
-* [ ] ACL design
-* [ ] Inter-VLAN filtering
-* [ ] Guest isolation
-* [ ] Server protection
-* [ ] ACL testing
-
-## Final Phase — Testing & Documentation
-
-* [ ] Full connectivity testing
-* [ ] HSRP failover testing
-* [ ] EtherChannel failure testing
-* [ ] OSPF failure testing
-* [ ] Security testing
-* [ ] Configuration backup
-* [ ] Final topology
-* [ ] Final documentation
-* [ ] Final security assessment
+* [x] Layer 2 redundancy
+* [x] Edge1 configuration
+* [x] Edge2 configuration
+* [x] Edge1 ↔ Edge2 WAN link
+* [x] ISP1 addition
+* [x] ISP2 addition
+* [x] Edge1 ↔ ISP1 link
+* [x] Edge2 ↔ ISP2 link
+* [x] ISP ↔ Cloud-PT connections
+* [x] Final STP verification
+* [x] Final Layer 2 verification
+* [x] Connectivity verification
 
 ---
 
+## Day 3 — Dynamic Routing & Network Services
+
+* [ ] OSPF configuration
+* [ ] OSPF Router IDs
+* [ ] OSPF network advertisements
+* [ ] OSPF neighbors
+* [ ] Routing table verification
+* [ ] Default route configuration
+* [ ] Route propagation
+* [ ] Route failover testing
+* [ ] DHCP configuration
+* [ ] DHCP relay
+* [ ] DNS / server configuration
+* [ ] NAT configuration
+* [ ] PAT configuration
+* [ ] Internet / external connectivity
+* [ ] Network services verification
+
+---
+
+## Day 4 — Network & Layer 2 Security
+
+* [ ] SSH configuration
+* [ ] Local authentication
+* [ ] Enable secret
+* [ ] Password protection
+* [ ] Console security
+* [ ] VTY security
+* [ ] Secure management
+* [ ] Unused-port shutdown
+* [ ] Port Security
+* [ ] Sticky MAC addresses
+* [ ] DHCP Snooping
+* [ ] Dynamic ARP Inspection
+* [ ] PortFast
+* [ ] BPDU Guard
+* [ ] Layer 2 security verification
+* [ ] Security violation testing
+
+---
+
+## Day 5 — Traffic Security, Testing & Finalization
+
+* [ ] ACL design
+* [ ] Standard ACL
+* [ ] Extended ACL
+* [ ] Inter-VLAN filtering
+* [ ] Guest network isolation
+* [ ] Server protection
+* [ ] Management network protection
+* [ ] Internet traffic filtering
+* [ ] ACL testing
+* [ ] Full connectivity testing
+* [ ] HSRP failover testing
+* [ ] EtherChannel failure testing
+* [ ] STP failover testing
+* [ ] OSPF failure testing
+* [ ] DHCP testing
+* [ ] DNS testing
+* [ ] NAT/PAT testing
+* [ ] Security testing
+* [ ] Configuration backup
+* [ ] Final topology
+* [ ] Final configuration files
+* [ ] Final screenshots
+* [ ] Final documentation
+* [ ] Final security assessment
+* [ ] GitHub portfolio finalization
+
+---
 # Repository Structure
 
 ```text
