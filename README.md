@@ -325,6 +325,24 @@ SW1-CORE
    ║ EtherChannel
    ║
 SW2-CORE
+
+SW1-CORE
+   ║
+   ║ EtherChannel
+   ║
+SW3-ACCESS
+
+SW2-CORE
+   ║
+   ║ EtherChannel
+   ║
+SW4-ACCCESS
+
+SW3-ACCCESS
+   ║
+   ║ EtherChannel
+   ║
+SW4-ACCCESS
 ```
 
 ---
@@ -551,12 +569,12 @@ All tests will be performed within the simulated laboratory environment.
 
 ## Day 2 — Layer 2 Redundancy
 
-* [ ] EtherChannel
-* [ ] STP
-* [ ] Root bridge configuration
-* [ ] PortFast
-* [ ] BPDU Guard
-* [ ] Layer 2 verification
+* [x] EtherChannel
+* [x] STP
+* [x] Root bridge configuration
+* [x] PortFast
+* [x] BPDU Guard
+* [x] Layer 2 verification
 
 ## Day 3 — Dynamic Routing
 
@@ -639,24 +657,16 @@ secure-enterprise-network/
 │   └── final/
 │
 ├── docs/
-│   ├── architecture/
-│   ├── day1/
-│   ├── day2/
-│   ├── day3/
-│   └── final/
-│
-├── screenshots/
 │   ├── topology/
-│   ├── vlan/
-│   ├── hsrp/
-│   ├── ospf/
-│   └── security/
+|   └── days/
+│  
 │
-└── tests/
-    ├── day1/
-    ├── day2/
-    ├── day3/
-    └── final/
+|
+└── connectivity-tests/
+    ├── day1.txt
+    ├── day2.txt
+    ├── day3.txt
+    └── final.txt
 ```
 
 ---
@@ -721,8 +731,8 @@ This project demonstrates practical skills in:
 | SVI Configuration   | Completed |
 | Inter-VLAN Routing  | Completed |
 | HSRP                | Completed |
-| EtherChannel        | Planned   |
-| STP                 | Planned   |
+| EtherChannel        | Completed |
+| STP                 | Completed |
 | OSPF                | Planned   |
 | DHCP                | Planned   |
 | NAT/PAT             | Planned   |
