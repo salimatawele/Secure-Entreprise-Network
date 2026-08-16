@@ -81,10 +81,11 @@ The network uses a hierarchical architecture composed of:
 
 ```text
                               INTERNET
-                                 |
-                               [ISP]
-                              /     \
-                             /       \
+                            /          \
+                           /            \
+                        [ISP1]       [ISP2]
+                          |             |
+                          |             |
                        [R1-EDGE]   [R2-EDGE]
                           |             |
                           |             |
@@ -114,19 +115,25 @@ The network uses a hierarchical architecture composed of:
 
 # 🔌 Interface & Connection Plan
 
-## ISP
+## ISP1
 
 | Interface | Connected Device |
 | --------- | ---------------- |
-| G0/0      | Internet / Cloud |
-| G0/1      | R1-EDGE G0/0     |
-| G0/2      | R2-EDGE G0/0     |
+|  S0/0/0   | serial0 / Cloud  |
+|  S0/0/1   |     R1-EDGE      |
+
+## ISP2
+
+| Interface | Connected Device |
+| --------- | ---------------- |
+|  S0/0/0   | serial1 / Cloud  |
+|  S0/0/1   |     R2-EDGE      |
 
 ## R1-EDGE
 
 | Interface | Connected Device |
 | --------- | ---------------- |
-| G0/0      | ISP G0/1         |
+| S0/0/1    | ISP1             |
 | G0/1      | SW1-CORE G0/1    |
 | G0/2      | R2-EDGE G0/2     |
 
@@ -134,7 +141,7 @@ The network uses a hierarchical architecture composed of:
 
 | Interface | Connected Device |
 | --------- | ---------------- |
-| G0/0      | ISP G0/2         |
+| S0/0/1    | ISP2             |
 | G0/1      | SW2-CORE G0/1    |
 | G0/2      | R1-EDGE G0/2     |
 
