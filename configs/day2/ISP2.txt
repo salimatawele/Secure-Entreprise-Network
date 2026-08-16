@@ -1,5 +1,11 @@
+! ============================================================
+! Device: ISP2
+! Project: Secure Enterprise Network
+! Phase: Day 2 - Network Foundation
+! ============================================================
 
-
+! Paste the output of:
+! show running-config
 
 ISP2#SH RUN
 Building configuration...
