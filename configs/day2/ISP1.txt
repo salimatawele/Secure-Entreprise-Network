@@ -4,6 +4,9 @@
 ! Phase: Day 2 - Network Foundation
 ! ============================================================
 
+! Paste the output of:
+! show running-config
+
 Router#SH RUN
 Building configuration...
 
