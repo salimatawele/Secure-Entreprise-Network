@@ -1,1 +1,121 @@
+! ============================================================
+! Device: R2-EDGE
+! Project: Secure Enterprise Network
+! Phase: Day 3 - Network Foundation
+! ============================================================
 
+! Paste the output of:
+! show running-config
+
+R2-EDGE#sh run
+Building configuration...
+
+Current configuration : 1424 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R2-EDGE
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX15241QBN-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/1
+ ip address 10.0.0.9 255.255.255.252
+ ip ospf 50 area 0
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ ip address 10.0.0.2 255.255.255.252
+ ip ospf 50 area 0
+!
+interface Serial0/0/1
+ ip address 198.51.100.2 255.255.255.252
+ ip nat outside
+ clock rate 2000000
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 50
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 10.0.0.8 0.0.0.3 area 0
+ default-information originate
+!
+ip nat pool Public 198.51.100.9 198.51.100.14 netmask 255.255.255.248
+ip nat inside source list 2 pool Public overload
+ip classless
+ip route 0.0.0.0 0.0.0.0 Serial0/0/1 
+!
+ip flow-export version 9
+!
+!
+access-list 2 permit 192.168.10.0 0.0.0.255
+access-list 2 permit 192.168.20.0 0.0.0.255
+access-list 2 permit 192.168.30.0 0.0.0.255
+access-list 2 permit 192.168.40.0 0.0.0.255
+access-list 2 permit 192.168.50.0 0.0.0.255
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
