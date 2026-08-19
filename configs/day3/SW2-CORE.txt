@@ -1,1 +1,203 @@
+! ============================================================
+! Device: SW2-CORE
+! Project: Secure Enterprise Network
+! Phase: Day 3 - Network Foundation
+! ============================================================
 
+! Paste the output of:
+! show running-config
+
+SW2-CORE#sh run
+Building configuration...
+
+Current configuration : 2944 bytes
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname SW2-CORE
+!
+!
+no profinet
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree vlan 20,40,50 priority 24576
+spanning-tree vlan 10,30,99 priority 28672
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Port-channel3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 3 mode desirable
+!
+interface FastEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 3 mode desirable
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+ no switchport
+ ip address 10.0.0.10 255.255.255.252
+ ip ospf cost 100
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 00e0.8f10.8b01
+ ip address 192.168.10.3 255.255.255.0
+ ip helper-address 192.168.40.10
+ ip ospf 50 area 0
+ standby 10 ip 192.168.10.1
+ standby 0 preempt
+!
+interface Vlan20
+ mac-address 00e0.8f10.8b02
+ ip address 192.168.20.3 255.255.255.0
+ ip helper-address 192.168.40.10
+ ip ospf 50 area 0
+ standby 20 ip 192.168.20.1
+ standby 0 preempt
+!
+interface Vlan30
+ mac-address 00e0.8f10.8b03
+ ip address 192.168.30.3 255.255.255.0
+ ip helper-address 192.168.40.10
+ ip ospf 50 area 0
+ standby 30 ip 192.168.30.1
+ standby 0 preempt
+!
+interface Vlan40
+ mac-address 00e0.8f10.8b04
+ ip address 192.168.40.3 255.255.255.0
+ ip ospf 50 area 0
+ standby 40 ip 192.168.40.1
+ standby 0 preempt
+!
+interface Vlan50
+ mac-address 00e0.8f10.8b05
+ ip address 192.168.50.3 255.255.255.0
+ ip helper-address 192.168.40.10
+ ip ospf 50 area 0
+ standby 50 ip 192.168.50.1
+ standby 0 preempt
+!
+interface Vlan99
+ mac-address 00e0.8f10.8b06
+ ip address 192.168.99.3 255.255.255.0
+!
+router ospf 50
+ log-adjacency-changes
+ network 10.0.0.8 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
