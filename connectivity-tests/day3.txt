@@ -1,1 +1,50 @@
+## Connectivity Tests
 
+### 1. PC VLAN 10 → Edge1
+- **Test :** `ping` depuis un PC du VLAN 10 vers l’interface de Edge1 reliée au Core.
+- **Résultat initial :** Échec.
+- **Cause :** Les réseaux `192.168.x.0/24` n’étaient pas présents dans la table de routage de Edge1.
+- **Correction :** Annonce des réseaux VLAN dans OSPF sur les Core.
+- **Résultat final :** Réussi.
+
+### 2. Edge1 → PC VLAN 10
+- **Test :** `ping` depuis Edge1 vers un PC du VLAN 10.
+- **Résultat initial :** Échec avec `U (Destination Host Unreachable)`.
+- **Cause :** Edge1 ne possédait pas les routes vers les réseaux `192.168.x.0/24`.
+- **Correction :** Configuration correcte d’OSPF sur les Core.
+- **Résultat final :** Réussi.
+
+### 3. PC VLAN 10 → Edge1/ISP1
+- **Test :** `ping` depuis le PC du VLAN 10 vers l’interface publique de Edge1.
+- **Résultat :** Réussi.
+- **Conclusion :** Le routage entre le VLAN 10 et Edge1 ainsi que le chemin vers l’interface externe de Edge1 fonctionnent correctement.
+
+### 4. Edge1 → ISP1
+- **Test :** `ping` depuis Edge1 vers l’interface de ISP1.
+- **Résultat initial :** Échec.
+- **Correction :** Configuration et vérification des adresses IP du lien Edge1 ↔ ISP1.
+- **Résultat final :** Réussi.
+- **Conclusion :** Le lien entre Edge1 et ISP1 est opérationnel.
+
+### 5. NAT/PAT via Edge1
+- **Test :** Trafic provenant d’un PC du VLAN 10 vers le réseau externe via Edge1.
+- **Résultat :** Réussi.
+- **Conclusion :** Le routage interne, la configuration `ip nat inside`, la configuration `ip nat outside` ainsi que le PAT avec `overload` fonctionnent correctement sur Edge1.
+
+### 6. PC VLAN 10 → Edge2
+- **Test :** `ping` depuis le PC du VLAN 10 vers l’interface de Edge2 reliée au Core.
+- **Résultat :** Réussi.
+- **Conclusion :** Le chemin interne vers Edge2 fonctionne correctement.
+
+### 7. Edge2 → ISP2
+- **Test :** `ping` depuis Edge2 vers l’interface de ISP2.
+- **Résultat :** Réussi.
+- **Conclusion :** Le lien Edge2 ↔ ISP2 est opérationnel.
+
+### 8. Test de failover Edge1/ISP1 → Edge2/ISP2
+- **Test :** Coupure du lien Edge1 ↔ ISP1 afin de forcer l’utilisation du chemin de secours.
+- **Résultat :** Le PC conserve l’accès jusqu’à Edge2 et Edge2 peut atteindre ISP2.
+- **Chemin de secours :**
+  
+```text
+PC → Core → Edge2 → ISP2
