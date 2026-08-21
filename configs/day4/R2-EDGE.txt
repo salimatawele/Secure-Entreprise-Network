@@ -1,0 +1,8 @@
+! ============================================================
+! Device: R2-EDGE
+! Project: Secure Enterprise Network
+! Phase: Day 4
+! ============================================================
+
+! Paste the output of:
+! show running-config
