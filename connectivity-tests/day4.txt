@@ -1,0 +1,104 @@
+1. Secure Management & Device Hardening
+1. Accès distant sécurisé (SSH) et Authentification locale
+Test : Tentative de connexion ssh -l admin 192.168.10.x depuis un PC d'administration vers le switch/routeur.
+
+Résultat initial : Échec de connexion (refus de port 22 ou repli sur Telnet non sécurisé).
+
+Cause : Le service SSH n’était pas activé et le domaine cryptographique n'était pas défini sur l'équipement.
+
+Correction : Configuration du nom de domaine, génération des clés RSA (crypto key generate rsa), création d'un utilisateur local avec privilège 15 et configuration des lignes VTY (transport input ssh).
+
+Résultat final : Réussi. Connexion chiffrée établie avec succès.
+
+2. Sécurisation de la console et des mots de passe
+Test : Accès direct via le câble console ou tentative d'accès privilégié sans mot de passe.
+
+Résultat initial : Accès direct au mode utilisateur ou privilégié sans authentification.
+
+Cause : Absence de mot de passe sur la ligne console et absence de secret chiffré.
+
+Correction : Application de line con 0 avec password et login, ainsi que la commande enable secret.
+
+Résultat final : Réussi. Un mot de passe est désormais exigé à la console et pour l'élévation des privilèges.
+
+2. Port Security & Unused Ports
+3. Désactivation des ports inutilisés (Unused-Port Shutdown)
+Test : Vérification de l'état des ports non utilisés sur les switches d'accès (SW3 et SW4).
+
+Résultat initial : Les ports non connectés étaient actifs (up/down ou down/down par défaut sur le VLAN 1).
+
+Cause : Risque de branchement non autorisé sur des prises murales libres.
+
+Correction : Désactivation par lots des ports inutilisés (shutdown) et basculement dans un VLAN noir (VLAN 999).
+
+Résultat final : Réussi. Les ports vacants sont isolés et inactifs.
+
+4. Port Security & Sticky MAC addresses
+Test : Connexion d'un PC autorisé sur un port d'accès configuré, puis vérification de l'apprentissage des adresses MAC.
+
+Résultat initial : Aucune restriction du nombre d'adresses MAC ou de filtrage dynamique.
+
+Cause : Configuration par défaut des ports d'accès.
+
+Correction : Activation de switchport port-security, limitation à 2 adresses max, mode restrict ou shutdown, et activation du mac-address sticky.
+
+Résultat final : Réussi. Les adresses MAC des postes légitimes sont enregistrées dynamiquement dans la configuration courante.
+
+3. DHCP Snooping & Dynamic ARP Inspection (DAI)
+5. DHCP Snooping
+Test : Analyse de la distribution des baux DHCP et injection simulée d'un faux serveur DHCP (Rogue DHCP).
+
+Résultat initial : Les clients acceptaient les baux de n'importe quel serveur DHCP sur le réseau.
+
+Cause : Absence de filtrage des messages DHCP par le commutateur.
+
+Correction : Activation globale de ip dhcp snooping, association aux VLANs concernés, et désignation des ports uplinks vers les cœurs comme trusted.
+
+Résultat final : Réussi. Les offres provenant de ports non de confiance sont bloquées.
+
+6. Dynamic ARP Inspection (DAI)
+Test : Vérification de la protection contre l'empoisonnement ARP (ARP Spoofing / Man-in-the-Middle).
+
+Résultat initial : Trafic ARP non vérifié par les commutateurs d'accès.
+
+Cause : Absence de corrélation entre la table de binding DHCP Snooping et le trafic ARP.
+
+Correction : Activation de ip arp inspection vlan [ID] sur les switches d'accès et marquage des ports uplinks en mode trust.
+
+Résultat final : Réussi. Les paquets ARP falsifiés sont interceptés et rejetés.
+
+4. Vérification et Tests de Violation (Layer 2)
+7. Vérification de la sécurité de couche 2
+Test : Exécution des commandes de contrôle sur les commutateurs (show port-security, show ip dhcp snooping binding).
+
+Résultat : Les tables affichent correctement les liaisons sécurisées, les adresses sticky et les ports de confiance.
+
+Conclusion : La configuration de niveau 2 est intègre et active.
+
+8. Test de violation de sécurité (Security Violation Testing)
+Test : Connexion d'un PC non autorisé (ou modification de l'adresse MAC d'un PC pour usurper celle d'un autre) sur un port sécurisé.
+
+Résultat initial : Le trafic passait initialement.
+
+Action corrective appliquée : Politique de violation définie sur shutdown ou restrict.
+
+Résultat final : Dès l'intrusion, le port passe en état err-disabled (ou bloque le trafic excédentaire), générant une alerte système. Réactivation effectuée via un shutdown / no shutdown.
+
+5. ACL Design & Filtering
+9. Isolation du réseau Invité (Guest Network Isolation)
+Test : Tentative de ping depuis le réseau des invités (GUEST) vers le réseau de l'administration (ADMIN) ou les serveurs internes (SRV1).
+
+Résultat initial : Les invités pouvaient joindre l'ensemble du réseau interne grâce au routage inter-VLAN.
+
+Cause : Absence de filtrage par ACL.
+
+Correction : Application d'une ACL étendue (Extended ACL) sur l'interface du routeur/cœur gérant le VLAN invité pour bloquer le trafic vers les sous-réseaux internes tout en autorisant l'accès Internet.
+
+Résultat final : Réussi. Les invités ont uniquement accès à Internet.
+
+10. Protection des serveurs et du réseau de gestion
+Test : Tentative d'accès au serveur critique (SRV1) ou aux équipements de gestion depuis des postes non autorisés (IT ou Guest).
+
+Résultat : Réussi (bloqué par l'ACL étendue dédiée placée au plus près de la source ou du serveur).
+
+Conclusion : Seuls les administrateurs (ADMIN) peuvent accéder à la gestion des équipements et aux zones sensibles.
