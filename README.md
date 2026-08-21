@@ -593,56 +593,53 @@ All tests will be performed within the simulated laboratory environment.
 
 ## Day 3 — Dynamic Routing & Network Services
 
-* [ ] OSPF configuration
-* [ ] OSPF Router IDs
-* [ ] OSPF network advertisements
-* [ ] OSPF neighbors
-* [ ] Routing table verification
-* [ ] Default route configuration
-* [ ] Route propagation
-* [ ] Route failover testing
-* [ ] DHCP configuration
-* [ ] DHCP relay
-* [ ] DNS / server configuration
-* [ ] NAT configuration
-* [ ] PAT configuration
-* [ ] Internet / external connectivity
-* [ ] Network services verification
-
+* [X] OSPF configuration
+* [X] OSPF Router IDs
+* [X] OSPF network advertisements
+* [X] OSPF neighbors
+* [X] Routing table verification
+* [X] Default route configuration
+* [X] Route propagation
+* [X] DHCP configuration
+* [X] DHCP relay
+* [X] NAT configuration
+* [X] PAT configuration
 ---
 
 ## Day 4 — Network & Layer 2 Security
 
-* [ ] SSH configuration
-* [ ] Local authentication
-* [ ] Enable secret
-* [ ] Password protection
-* [ ] Console security
-* [ ] VTY security
-* [ ] Secure management
-* [ ] Unused-port shutdown
-* [ ] Port Security
-* [ ] Sticky MAC addresses
-* [ ] DHCP Snooping
-* [ ] Dynamic ARP Inspection
-* [ ] PortFast
-* [ ] BPDU Guard
-* [ ] Layer 2 security verification
-* [ ] Security violation testing
+* [X] SSH configuration
+* [X] Local authentication
+* [X] Enable secret
+* [X] Password protection
+* [X] Console security
+* [X] VTY security
+* [X] Secure management
+* [X] Unused-port shutdown
+* [X] Port Security
+* [X] Sticky MAC addresses
+* [X] DHCP Snooping
+* [X] Dynamic ARP Inspection
+* [X] Layer 2 security verification
+* [X] Security violation testing
+* [X] ACL design
+* [X] Standard ACL
+* [X] Extended ACL
+* [X] Inter-VLAN filtering
+* [X] Guest network isolation
+* [X] Server protection
+* [X] Management network protection
+* [X] Internet traffic filtering
+* [X] ACL testing
 
 ---
 
 ## Day 5 — Traffic Security, Testing & Finalization
 
-* [ ] ACL design
-* [ ] Standard ACL
-* [ ] Extended ACL
-* [ ] Inter-VLAN filtering
-* [ ] Guest network isolation
-* [ ] Server protection
-* [ ] Management network protection
-* [ ] Internet traffic filtering
-* [ ] ACL testing
+* [ ] DNS / server configuration
+* [ ] Route failover testing
+* [ ] Internet / external connectivity
+* [ ] Network services verification
 * [ ] Full connectivity testing
 * [ ] HSRP failover testing
 * [ ] EtherChannel failure testing
