@@ -1,4 +1,4 @@
-# Résumé - Sécurité L2 et ACL
+# Day 4 - Sécurité L2 et ACL
 
 ## 1. Sécurisation de l'Administration & Accès
 * **SSH & Authentification :** Remplacement de Telnet par SSH avec clés RSA et base d'utilisateurs locaux.
