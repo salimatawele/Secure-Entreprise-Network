@@ -1,1 +1,25 @@
+DNS / Server Configuration : Réussi. Le serveur DNS et les services associés sont correctement configurés. La résolution de noms d'hôtes en adresses IP et l'utilisation de l'utilitaire nslookup fonctionnent parfaitement sur l'ensemble du réseau.
 
+Route Failover Testing : Réussi. La mise en place des routes statiques flottantes a permis de valider le basculement automatique des routes : en cas de coupure du lien principal, le trafic bascule de manière transparente sur le chemin de secours.
+
+Internet / External Connectivity : Réussi. La connectivité vers l'extérieur et le Cloud Internet est pleinement opérationnelle, permettant aux hôtes internes d'atteindre les réseaux distants.
+
+Network Services Verification : Réussi. Les services réseau critiques (comme le relais DHCP via ip helper-address) répondent correctement et assurent la transition des requêtes à travers les sous-réseaux.
+
+Full Connectivity Testing : Réussi. Les tests de bout en bout (via les commandes ping et traceroute) confirment que la communication inter-VLAN et inter-réseaux s'effectue sans encombre à travers la topologie.
+
+HSRP Failover Testing : Réussi. Le protocole de redondance HSRP assure la continuité de la passerelle par défaut ; en cas de défaillance du routeur actif, le routeur de secours prend le relais instantanément pour les hôtes.
+
+EtherChannel Failure Testing : Réussi. Les liens agrégés (Port-channels) gèrent correctement la répartition de charge et tolèrent la panne d'une interface physique sans perte de connectivité globale.
+
+STP Failover Testing : Réussi. Le protocole Spanning Tree (Rapid-PVST) bloque efficacement les boucles de niveau 2 tout en réactivant automatiquement les chemins de secours en cas de rupture de lien.
+
+OSPF Failure Testing : Réussi. Le routage dynamique OSPF (Area 0) converge rapidement et met à jour dynamiquement les tables de routage suite à la modification ou à la coupure des liaisons.
+
+DHCP Testing : Réussi. L'attribution dynamique des adresses IP aux différents terminaux s'effectue correctement sur l'ensemble des VLANs du réseau.
+
+DNS Testing : Réussi. Les requêtes de résolution de noms transitent de manière fluide et les clients obtiennent instantanément les correspondances d'adresses recherchées.
+
+NAT/PAT testing : Réussi. La Traduction d'Adresse de Port (PAT) est pleinement fonctionnelle sur les routeurs de bordure, permettant aux adresses privées internes d'accéder à l'extérieur via les pools publics configurés.
+
+Security testing : Réussi. Les mécanismes de sécurité de niveau 2 (Port Security, DHCP Snooping et Dynamic ARP Inspection) protègent efficacement le réseau contre les accès non autorisés et les comportements malveillants.
