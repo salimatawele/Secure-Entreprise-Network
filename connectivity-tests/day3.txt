@@ -1,3 +1,11 @@
+============================================================
+SECURE ENTERPRISE NETWORK
+DAY 3
+============================================================
+
+Date: 19 August 2026
+Phase: Day 1 - Network Foundation
+
 ## Connectivity Tests
 
 ### 1. PC VLAN 10 → Edge1
