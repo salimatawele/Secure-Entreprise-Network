@@ -1,3 +1,11 @@
+============================================================
+SECURE ENTERPRISE NETWORK
+DAY 4
+============================================================
+
+Date: 19 August 2026
+============================================================
+
 1. Secure Management & Device Hardening
 1. Accès distant sécurisé (SSH) et Authentification locale
 Test : Tentative de connexion ssh -l admin 192.168.10.x depuis un PC d'administration vers le switch/routeur.
