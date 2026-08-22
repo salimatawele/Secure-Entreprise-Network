@@ -18,4 +18,5 @@
 ## 2. Erreurs Rencontrées et Corrigées
 * **Mode des interfaces Port-channel / Trunks** : Les interfaces étaient configurées en mode `access` au lieu de `trunk`, ce qui bloquait le passage des VLANs vers les passerelles HSRP. -> *Correction : passage des interfaces et port-channels en mode `trunk`.*
 * **Blocage du DHCP par le DHCP Snooping** : Le switch bloquait les paquets relayés avec un champ `giaddr` non nul (erreur `%DHCP_SNOOPING-5-DHCP_SNOOPING_NONZERO_GIADDR`). -> *Correction : configuration des ports uplinks inter-switchs en mode `trust` (`ip dhcp snooping trust`).*
+* Le DHCP snooping a du être désactivé afin d'éviter de bloquer les paquets.
 * **Absence d'enregistrement DNS** : La commande `nslookup` renvoyait une erreur `Non-existent domain`. -> *Correction : ajout de l'enregistrement de type A (`www.entreprise.local`) dans la configuration du service DNS du serveur.*
