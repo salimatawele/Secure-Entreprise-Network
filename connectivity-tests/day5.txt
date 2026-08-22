@@ -1,3 +1,11 @@
+============================================================
+SECURE ENTERPRISE NETWORK
+DAY 5
+============================================================
+
+Date: 22 August 2026
+
+
 DNS / Server Configuration : Réussi. Le serveur DNS et les services associés sont correctement configurés. La résolution de noms d'hôtes en adresses IP et l'utilisation de l'utilitaire nslookup fonctionnent parfaitement sur l'ensemble du réseau.
 
 Route Failover Testing : Réussi. La mise en place des routes statiques flottantes a permis de valider le basculement automatique des routes : en cas de coupure du lien principal, le trafic bascule de manière transparente sur le chemin de secours.
